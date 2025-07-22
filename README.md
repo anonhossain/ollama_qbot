@@ -34,7 +34,10 @@ ollama pull nomic-embed-text
 ollama pull llama3.1:8b
 ```
 ## Create the Necessary Folders
-
+```
+mkdir file
+mkdir output
+```
 ## Create .env and put the credentials:
 
 ```
