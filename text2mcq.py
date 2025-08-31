@@ -89,39 +89,6 @@ def generate_raw_mcqs(vector_db, num_questions=10, output_file="mcqs_raw.txt"):
     print(f"💾 Saved raw MCQs to {output_file}")
 
 
-# --- Step 3b: Convert raw MCQs from .txt into JSON format ---
-def convert_mcqs_to_json(input_file="mcqs_raw.txt", output_file="mcqs.json"):
-    with open(input_file, "r", encoding="utf-8") as f:
-        raw_text = f.read()
-
-    json_prompt = f"""
-    Convert the following MCQs into a STRICT JSON list.
-    Schema for each MCQ:
-    {{
-        "id": number,
-        "question": "string",
-        "options": [{{"A": "..." }}, {{"B": "..." }}, {{"C": "..." }}, {{"D": "..."}}],
-        "correct_answer": "string",
-        "explanation": "string"
-    }}
-
-    MCQs:
-    {raw_text}
-    """
-
-    response = client.chat(model=mcq_model, messages=[{"role": "user", "content": json_prompt}])
-    mcq_json_text = response.get("message", {}).get("content", "").strip()
-
-    try:
-        mcq_list = json.loads(mcq_json_text)
-        with open(output_file, "w", encoding="utf-8") as f:
-            json.dump(mcq_list, f, indent=4, ensure_ascii=False)
-        print(f"💾 Saved formatted MCQs to {output_file}")
-    except json.JSONDecodeError as e:
-        print(f"⚠️ JSON decode failed: {e}")
-        print("Raw model response:\n", mcq_json_text)
-
-
 # --- Run Pipeline ---
 if __name__ == "__main__":
     txt_file = "Notes.txt"
@@ -134,5 +101,3 @@ if __name__ == "__main__":
     # Step 1: Generate plain-text MCQs
     generate_raw_mcqs(db, num_questions=total_questions, output_file="mcqs_raw.txt")
 
-    # Step 2: Convert to JSON
-    convert_mcqs_to_json("mcqs_raw.txt", "generated_questions.json")
