@@ -76,7 +76,7 @@ class PreprocessingPipeline:
 
         # Convert raw MCQs to JSON
         try:
-            raw_mcq_file = f"{self.output_folder}/mcqs_raw.txt"
+            raw_mcq_file = f"{self.output_folder}/generated_question.txt"
             mcq_json_processor = MCQTextToJSON(raw_mcq_file, output_folder=self.output_folder)
             mcq_json_processor.process()
 

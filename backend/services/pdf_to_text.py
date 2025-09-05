@@ -108,8 +108,10 @@ class PDFProcessor:
         return all_text
 
 
-def save_combined_text_from_pdfs(upload_folder: str = "upload", output_file: str = "output/combined_output.txt"):
-    """Process all PDFs from the upload folder and save the combined extracted text to a file."""
+def save_combined_text_from_pdfs(upload_folder: str = "upload", 
+                                 output_file: str = "output/combined_output.txt"):
+    """
+    Process all PDFs from the upload folder and save the combined extracted text to a file."""
     # Ensure upload folder exists
     os.makedirs(upload_folder, exist_ok=True)
 

@@ -55,7 +55,7 @@ class MCQTextToJSON:
         
         return mcqs
 
-    def save_as_json(self, mcqs, output_file="mcqs.json"):
+    def save_as_json(self, mcqs, output_file="generated_question.json"):
         """Save the parsed MCQs to a JSON file."""
         os.makedirs(self.output_folder, exist_ok=True)
         
@@ -74,6 +74,6 @@ class MCQTextToJSON:
 
 # --- Running the pipeline ---
 if __name__ == "__main__":
-    raw_mcq_file = "output/mcqs_raw.txt"  # Path to the raw MCQ file
+    raw_mcq_file = "output/generated_question.txt"  # Path to the raw MCQ file
     mcq_json_processor = MCQTextToJSON(raw_mcq_file, output_folder="output")
     mcq_json_processor.process()

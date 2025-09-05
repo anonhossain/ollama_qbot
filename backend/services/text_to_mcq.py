@@ -58,7 +58,7 @@ class TextToMCQ:
         print(f"✅ Embedded {len(docs)} meaningful chunks into Chroma DB")
         return vector_db
 
-    def generate_raw_mcqs(self, vector_db, num_questions, output_file="mcqs_raw.json"):
+    def generate_raw_mcqs(self, vector_db, num_questions, output_file="generated_question.txt"):
         """Generate raw MCQs based on the content in Chroma DB."""
         docs = vector_db._collection.get(include=["documents"])["documents"]
         if not docs:

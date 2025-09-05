@@ -6,7 +6,7 @@ from grpc import services
 
 # Define the base folder path
 BASE_DIR = Path(__file__).parent.parent  # assuming the script is in 'ollama_qbot/backend'
-UPLOAD_FOLDER = BASE_DIR / "backend/upload"
+UPLOAD_FOLDER = BASE_DIR / "upload"
 
 # Ensure the upload directory exists
 UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)  # Creates the folder if it doesn't exist
