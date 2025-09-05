@@ -1,3 +1,4 @@
+import traceback
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
 from services.preprocessing import generate_mcqs_pipeline
@@ -52,4 +53,7 @@ async def generate_mcqs():
         result = generate_mcqs_pipeline()
         return JSONResponse(content=result, status_code=200)
     except Exception as e:
-        return JSONResponse(content={"message": str(e)}, status_code=500)
+        #return JSONResponse(content={"message": str(e)}, status_code=500)
+        tb = traceback.format_exc()
+        print(f"Error in generate_mcqs: {tb}")
+        return JSONResponse(content={"message": str(e), "traceback": tb}, status_code=500)
